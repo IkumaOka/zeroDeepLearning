@@ -23,7 +23,12 @@ function testIdentity()
     @test identity([1 2 3]) == [1 2 3]
 end
 
+function testSoftmax()
+    @test softmax([0.3 2.9 4.0]) ≈ [0.018211273295547534 0.2451918129350739 0.7365969137693785] atol=0.00001
+end
+
 testStep()
 testSigmoid()
 testRelu()
 testIdentity()
+testSoftmax()

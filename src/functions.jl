@@ -14,3 +14,9 @@ end
 function identity(x)
     return x
 end
+
+function softmax(x)
+    expa = exp.(x)
+    sumExp = sum(expa)
+    return exp.(x) ./ sum(expa)
+end
