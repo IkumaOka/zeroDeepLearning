@@ -16,7 +16,7 @@ function identity(x)
 end
 
 function softmax(x)
-    expa = exp.(x)
-    sumExp = sum(expa)
-    return exp.(x) ./ sum(expa)
+    # findmax(x)[1]を引く理由はオーバーフロー対策
+    expa = exp.(x .- findmax(x)[1])
+    return expa ./ sum(expa)
 end
