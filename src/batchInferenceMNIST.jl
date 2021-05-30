@@ -12,7 +12,6 @@ for i in 1:100:(length(x[28, 28, :]) + 1 - batchSize)
     Xi = reshape(Xbatch, length(Xbatch[:, :, 1]), batchSize)
     yBatch = predict(network, Xi')
     p = mapslices(argmax, yBatch, dims=2)
-    println(p .== t[i:i+batchSize-1])
     global accuracyCnt += sum(p .== t[i:i+batchSize-1])
 end
 print("Accuracy:", accuracyCnt / length(x[28, 28, :]))
