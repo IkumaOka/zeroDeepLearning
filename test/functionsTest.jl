@@ -1,6 +1,6 @@
 using Test
 
-include("../src/functions.jl")
+include("../utils/functions.jl")
 
 function testStep()
     @test step([3, 0, 4])              == [1, 0, 1]
