@@ -28,9 +28,6 @@ function testGradientDescent()
     @test gradientDescent(function2, initX, 1e-10, 100) ≈ [-2.999999939999995 3.9999999199999934] atol=0.00001
 end
 
-
-
-
 testNumericalDiff()
 testNumericalGradient()
 testGradientDescent()

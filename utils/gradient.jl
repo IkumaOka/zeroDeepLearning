@@ -8,7 +8,7 @@ end
 function numericalGradient(f, x)
     h = 1e-4
     grad = zeros(size(x))
-    for idx in 1:ndims(x)
+    for idx in 1:length(x)
         tmpVal = x[idx]
         #f(x+h)の計算
         x[idx] = tmpVal .+ h
@@ -18,7 +18,7 @@ function numericalGradient(f, x)
         x[idx] = tmpVal .- h
         fxh2 = f(x)
 
-        grad[idx] = (fxh1 - fxh2) ./ (2 * h)
+        grad[idx] = (fxh1 .- fxh2) ./ (2 * h)
         #値を元に戻す
         x[idx] = tmpVal
     end

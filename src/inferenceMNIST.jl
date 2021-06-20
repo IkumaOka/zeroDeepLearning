@@ -22,13 +22,11 @@ t = py"t"
 
 network = initNetwork()
 x = reshape(x, 10000, 784)
-# print(length(x[1, :]))
 # println(x[10000, :]) # 784
 accuracyCnt = 0
 for i in 1:length(x[:, 1])
     # Xi =  reshape(x[:, :, i]', 1, length(x[:, :, i])) # (1, 784)
     y = predict(network, x[i, :])
-    # println(y)
     p = findmax(y)[2][2]
     # tはpythonから引っ張ってきてるため、indexに0が含まれる。そのため、p-1をしなければならない。
     if p-1 == t[i]

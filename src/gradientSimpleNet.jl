@@ -1,13 +1,15 @@
+include("../utils/errorFunctions.jl")
 include("../utils/functions.jl")
 
+
 mutable struct simpleNet
-    W::Array
+    W::Array{Float64,2}
+    simpleNet() = new()
 end
 
-function simpleNet()
+function simpleNet(W::Array{Float64,2})
     self = simpleNet()
-    self.W = randn(2, 3)
-
+    self.W = W
     return self
 end
 
@@ -16,7 +18,7 @@ function predict(self::simpleNet, x)
 end
 
 function loss(self::simpleNet, x, t)
-    z = self.predict(x)
+    z = predict(self, x)
     y = softmax(z)
     loss = crossEntropy(y, t)
 
