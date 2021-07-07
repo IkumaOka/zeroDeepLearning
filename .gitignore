@@ -1,2 +1,4 @@
 .DS_Store
-datasets/1
+datasets/
+deep-learning-from-scratch
+notebooks/.ipynb_checkpoints/

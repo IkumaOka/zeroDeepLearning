@@ -2,6 +2,7 @@
 using StatsBase
 
 include("../src/twoLayerNet.jl")
+include("../utils/pickBatchArray.jl")
 include("../utils/getMNIST.jl")
 
 xTrain, tTrain, xTest, tTest = getMNISTpy()
@@ -24,15 +25,16 @@ println(size(xTrain[60000, :]))
 for i in 1:itersNum
     # ミニバッチの取得
     batchMask = StatsBase.sample(1:trainSize, batchSize)
-    xBatch = xTrain[batchMask]
-    println(xBatch)
+
+    # xBatch = xTrain[batchMask] # この書き方はNumpyだけ、Juliaではどうやってやるか調査中
+    xBatch = miniBatch(batchMask, xTrain)
     println(size(xBatch))
-    tBatch = tTrain[batchMask]
+    tBatch = miniBatch(batchMask, tTrain)
 
     # 勾配の計算
     grad = numericalGradient(network, xBatch, tBatch)
     # grad = gradient(network, Xbatch, tBatch) # 高速版
-
+    println("grad完了")
     # パラメータの更新
     for key in ("W1", "b1", "W2", "b2")
         network.params[key] .-= learningRate .* grad[key]
