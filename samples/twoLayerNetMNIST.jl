@@ -13,14 +13,15 @@ xTrain, tTrain, xTest, tTest = getMNISTpy()
 trainLossList = []
 trainAccList = []
 testAccList = []
-# 1エポックあたりの繰り返し数
-iterPerEpoch = max(trainSize / batchSize, 1)
 
 # ハイパーパラメータ
 itersNum = 10000
 trainSize = size(xTrain)[1]
 batchSize = 100
 learningRate = 0.1
+
+# 1エポックあたりの繰り返し数
+iterPerEpoch = max(trainSize / batchSize, 1)
 
 network = twoLayerNet(784, 50, 10)
 
