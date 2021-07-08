@@ -11,6 +11,10 @@ xTrain, tTrain, xTest, tTest = getMNISTpy()
 #println(size(tTrain)) #(60000,)
 
 trainLossList = []
+trainAccList = []
+testAccList = []
+# 1エポックあたりの繰り返し数
+iterPerEpoch = max(trainSize / batchSize, 1)
 
 # ハイパーパラメータ
 itersNum = 10000
@@ -20,7 +24,7 @@ learningRate = 0.1
 
 network = twoLayerNet(784, 50, 10)
 
-println(size(xTrain[60000, :]))
+# println(size(xTrain[60000, :]))
 
 for i in 1:itersNum
     # ミニバッチの取得
@@ -28,13 +32,11 @@ for i in 1:itersNum
 
     # xBatch = xTrain[batchMask] # この書き方はNumpyだけ、Juliaではどうやってやるか調査中
     xBatch = miniBatch(batchMask, xTrain)
-    println(size(xBatch))
     tBatch = miniBatch(batchMask, tTrain)
 
     # 勾配の計算
     grad = numericalGradient(network, xBatch, tBatch)
     # grad = gradient(network, Xbatch, tBatch) # 高速版
-    println("grad完了")
     # パラメータの更新
     for key in ("W1", "b1", "W2", "b2")
         network.params[key] .-= learningRate .* grad[key]
@@ -43,6 +45,14 @@ for i in 1:itersNum
     # 学習経過の記録
     lossVal = loss(network, xBatch, tBatch)
     push!(trainLossList, lossVal)
+
+    if i % iterPerEpoch == 0
+        trainAcc = accuracy(network, xTrain, tTrain)
+        testAcc = accuracy(network, xTest, tTest)
+        push!(trainAccList, trainAcc)
+        push!(testAccList, testAcc)
+        println("train acc, test acc | " , trainAcc, ", ", testAcc)
+    end
 end
 
 
