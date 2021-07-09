@@ -1,5 +1,5 @@
 using Test
-include("../utils/mul.jl")
+include("../utils/mulLayer.jl")
 
 # buy_apple.py(p.138と同じ)
 function TestMul()
