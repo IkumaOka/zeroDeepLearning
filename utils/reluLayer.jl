@@ -1,16 +1,16 @@
-mutable struct ReluLayer
+mutable struct ReLULayer
     # いらないかも。Python実装はあるから一応残す。(p.142)
     mask
 end
 
-function forward(self::ReluLayer, x)
+function forward(self::ReLULayer, x)
     out = copy(x)
-    return reluActivation.(out)
+    return ReLUActivation.(out)
 end
 
-function backward(self::ReluLayer, dout)
+function backward(self::ReLULayer, dout)
     out = copy(dout)
-    return reluActivation.(out)
+    return ReLUActivation.(out)
 end
 
 ```
@@ -18,7 +18,7 @@ end
 この関数自体は、スカラーに対して適用する関数なので、
 forward関数で使っているように「.」を使ってブロードキャストする。
 ```
-function reluActivation(x::Float64)
+function ReLUActivation(x::Float64)
     if x <= 0
         x = 0
     end
