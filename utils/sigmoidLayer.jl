@@ -1,6 +1,5 @@
 mutable struct sigmoidLayer
-    # いらないかも。Python実装はあるから一応残す。(p.142)。いらない場合の実装分からん。
-    out
+    out::Array
 end
 
 function forward(self::sigmoidLayer, x)
