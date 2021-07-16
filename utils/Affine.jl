@@ -26,7 +26,7 @@ function forward(self::Affine, x::Array)
 end
 
 function backward(self::Affine, dout)
-    dx = dout * W'
+    dx = dout * self.W'
     self.dW = self.x' * dout
     self.db = sum(dout, dims=1)
 

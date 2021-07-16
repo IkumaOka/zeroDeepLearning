@@ -1,4 +1,4 @@
-include("./errorFunctions")
+include("./errorFunctions.jl")
 include("./functions.jl")
 
 mutable struct SoftmaxWithLoss
@@ -17,7 +17,7 @@ end
 
 function backward(self::SoftmaxWithLoss, dout=1)
     batchSize = size(self.t)[1]
-    dx = (self.y - self.t) / batchSize
+    dx = (self.y .- self.t) ./ batchSize
     
     return dx
 end

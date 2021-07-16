@@ -1,9 +1,9 @@
 using Test
-include("../utils/ReLULayer.jl")
+include("../utils/ReLU.jl")
 
 function TestRelu()
     x = [1.0 -0.5; -2.0 3.0]
-    relu = ReLULayer(nothing)
+    relu = ReLU(nothing)
     f = forward(relu, x)
     b = backward(relu, x)
     @test f == [1.0 0; 0 3.0]
