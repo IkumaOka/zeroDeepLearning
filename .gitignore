@@ -1,4 +1,5 @@
 .DS_Store
 datasets/
+datasets/__pycache__/
 deep-learning-from-scratch
 notebooks/.ipynb_checkpoints/

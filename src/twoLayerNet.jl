@@ -2,7 +2,7 @@ using DataStructures
 
 include("../utils/Affine.jl")
 include("../utils/ReLU.jl")
-include("../utils/softmaxWithLoss.jl")
+include("../utils/SoftmaxWithLoss.jl")
 include("../utils/errorFunctions.jl")
 include("../utils/functions.jl")
 include("../utils/gradient.jl")
