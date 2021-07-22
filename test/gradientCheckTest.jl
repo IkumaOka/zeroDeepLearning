@@ -9,7 +9,7 @@ function gradientCheck()
     network = twoLayerNet(784, 50, 10)
 
     xBatch = xTrain[1:3, 1:784]
-    tBatch = tTrain[1:3]
+    tBatch = tTrain[1:3, 1:10]
 
     gradNumerical = numericalGradient(network, xBatch, tBatch)
     gradBackprop = gradient(network, xBatch, tBatch)

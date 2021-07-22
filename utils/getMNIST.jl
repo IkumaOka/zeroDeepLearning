@@ -9,7 +9,7 @@ function getMNISTpy()
     from datasets.mnist import load_mnist
 
     def get_data():
-        (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
+        (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=True)
         return x_train, t_train, x_test, t_test
 
     x_train, t_train, x_test, t_test = get_data()

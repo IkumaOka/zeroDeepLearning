@@ -1,13 +1,13 @@
 mutable struct Affine
     Affine() = new()
     W::Array
-    b::Array
+    b
     x
     dW
     db
 end
 
-function Affine(W::Array, b::Array)
+function Affine(W::Array, b)
     self = Affine()
     self.W = W
     self.b = b
