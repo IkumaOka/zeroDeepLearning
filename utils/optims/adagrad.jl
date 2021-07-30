@@ -15,7 +15,11 @@ function update(self::AdaGrad, params, grads)
     if self.h == nothing
         self.h = Dict{}()
         for (key, value) in params
-            self.h[key] = zeros(size(value))
+            if typeof(value) == Float64
+                self.h[key] = 0.0
+            else
+                self.h[key] = zeros(size(value))
+            end
         end
     end
     # p.167の式(6.1)を実装
