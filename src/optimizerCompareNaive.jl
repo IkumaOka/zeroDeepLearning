@@ -1,4 +1,5 @@
 using DataStructures
+using PyPlot
 
 include("../utils/optims/adagrad.jl")
 include("../utils/optims/adam.jl")
@@ -47,7 +48,23 @@ for key in keys(optimizers)
 
     x = [n for n = -10.0:0.01:10.0]
     y = [n for n = -5.0:0.01:5.0]
+    xGrid = repeat(x, outer=(length(y),1))
+    yGrid = repeat(y',  outer=(1,length(x)))
+    Z = f.(xGrid, yGrid)
 
-    
-
+    mask = Z .> 7
+    Z[mask] .= 0
+    # plot
+    subplot(2, 2, idx)
+    idx += 1
+    plot(x_history, y_history, color="m", marker="o", markerfacecolor="r", linestyle="-")
+    contour(X, Y, Z)
+    ylim(-10, 10)
+    xlim(-10, 10)
+    plot(0, 0, '+')
+    title(key)
+    xlabel("x")
+    ylabel("y")
+    name = key + ".png"
+    savefig(name)
 end
